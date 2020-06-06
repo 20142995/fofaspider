@@ -105,17 +105,16 @@ class FofaSpider(object):
                 if error_i > 4:
                     print("[-] 连续5次未获取到数据，即将结束本次查询")
                     break
-            workbook.save('./{}.xls'.format(name))
-            print('[+] 搜集结果为{}.xls\n\n'.format(name))
         except KeyboardInterrupt:
             print("[-] Ctrl+C ，手动结束本次查询")
-            workbook.save('./{}.xls'.format(name))
-            print('[+] 搜集结果为{}.xls\n\n'.format(name))
         except Exception as e:
             print("[!]爬虫异常退出！")
+            print(e)
+        if ROW > 1:
             workbook.save('./{}.xls'.format(name))
             print('[+] 搜集结果为{}.xls\n\n'.format(name))
-            print(e)
+        else:
+            print("[-] 搜索无结果")
 
     def run(self):
         self.spider()
