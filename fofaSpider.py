@@ -38,7 +38,7 @@ class FofaSpider(object):
 
 
     def spider(self):
-        name = time.strftime('%Y%m%d_%H%M%S_')+self.qbase64
+        name = time.strftime('%Y%m%d_%H%M%S')
         headers = {"User-Agent": random.choice(self.UserAgent), "Cookie": self.Cookie}
         url = 'https://fofa.so/result?q={}&qbase64={}&full=true'.format(self.q, self.qbase64)
         html = requests.get(url=url, headers=headers).text
