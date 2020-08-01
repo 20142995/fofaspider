@@ -40,7 +40,7 @@ class FofaSpider(object):
     def spider(self):
         name = time.strftime('%Y%m%d_%H%M%S')
         headers = {"User-Agent": random.choice(self.UserAgent), "Cookie": self.Cookie}
-        url = 'https://fofa.so/result?q={}&qbase64={}&full=true'.format(self.q, self.qbase64)
+        url = 'https://classic.fofa.so/result?q={}&qbase64={}&full=true'.format(self.q, self.qbase64)
         html = requests.get(url=url, headers=headers).text
         pages = re.findall(r'>(\d*)</a> <a class="next_page" rel="next"', html)
         if len(pages) == 0:
@@ -58,7 +58,7 @@ class FofaSpider(object):
             error_i = 0
             for n in range(self.startpage,pagenum):
                 print("[+] 开始查询第{}页".format(n))
-                target = 'https://fofa.so/result?page={}&q={}&qbase64={}&full=true'.format(n,self.q, self.qbase64)
+                target = 'https://classic.fofa.so/result?page={}&q={}&qbase64={}&full=true'.format(n,self.q, self.qbase64)
                 res = requests.get(url=target, headers=headers).text
                 selector = etree.HTML(res)
                 rows = []
